@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,20 @@ Route::get('/', function () {
 
 
 Route::get('/users', function () {
-    sleep(3);
-
-    return Inertia::render('Users');
+    return Inertia::render('Users', [
+        'users' => User::paginate(10)->through(fn($user) => [
+            'id' => $user->id,
+            'name' => $user->name
+        ])
+    ]);
 });
 
 
 Route::get('/settings', function () {
     return Inertia::render('Settings');
+});
+
+
+Route::post('/logout', function () {
+    dd('login the user out');
 });
