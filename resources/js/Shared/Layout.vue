@@ -23,12 +23,12 @@
 import Nav from "./Nav.vue";
 
 export default {
-    components : { Nav },
-               computed : {
-                 username() {
-                   return this.$page.props.auth.user.username;
-                 }
-               }
+      components : { Nav },
+         computed : {
+           username() {
+             return this.$page.props.auth.user.username;
+           }
+         }
 }
 
 </script>
